@@ -1,28 +1,30 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import pandas as pd
 import os
-
-# Import project modules
 
 from backend.data_cleaning import clean_data
 from backend.preprocessing import preprocess_data
 from backend.automl_engine import run_automl
 from backend.model_evaluator import evaluate_model
-from backend.utils import save_model,generate_plot
+from backend.utils import save_model
+
+# Base directory of project
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Absolute paths
+TEMPLATE_DIR = os.path.join(BASE_DIR, "frontend", "templates")
+STATIC_DIR = os.path.join(BASE_DIR, "frontend", "static")
+UPLOAD_FOLDER = os.path.join(BASE_DIR, "uploads")
+MODEL_FOLDER = os.path.join(BASE_DIR, "models")
 
 app = Flask(
     __name__,
-    template_folder="C:/Users/Admin/OneDrive/Desktop/Smart-data-cleaning/frontend/templates",
-    static_folder="C:/Users/Admin/OneDrive/Desktop/Smart-data-cleaning/frontend/static"
+    template_folder=TEMPLATE_DIR,
+    static_folder=STATIC_DIR
 )
-
-# Folder where uploaded datasets will be stored
-UPLOAD_FOLDER = "uploads"
-MODEL_FOLDER = "models"
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
-# Create folders if they don't exist
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(MODEL_FOLDER, exist_ok=True)
 

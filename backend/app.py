@@ -3,11 +3,12 @@ import pandas as pd
 import os
 
 # Import project modules
-from data_cleaning import clean_data
-from preprocessing import preprocess_data
-from automl_engine import run_automl
-from model_evaluator import evaluate_model
-from utils import save_model, generate_plot
+
+from backend.data_cleaning import clean_data
+from backend.preprocessing import preprocess_data
+from backend.automl_engine import run_automl
+from backend.model_evaluator import evaluate_model
+from backend.utils import save_model,generate_plot
 
 app = Flask(
     __name__,

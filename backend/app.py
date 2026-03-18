@@ -6,7 +6,7 @@ from backend.data_cleaning import clean_data
 from backend.preprocessing import preprocess_data
 from backend.automl_engine import run_automl
 from backend.model_evaluator import evaluate_model
-from backend.utils import save_model
+from backend.utils import save_model,generate_plot
 
 # Base directory of project
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

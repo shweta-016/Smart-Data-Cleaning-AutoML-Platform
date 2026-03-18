@@ -1,0 +1,52 @@
+/* Page background */
+
+body {
+    background: #f5f7fb;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+
+/* Hero Section */
+
+.hero {
+    background: linear-gradient(120deg, #4e73df, #1cc88a);
+    color: white;
+    padding: 80px 20px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+
+/* Feature Cards */
+
+.feature-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* Main Card */
+
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+
+/* Buttons */
+
+.btn-primary {
+    background: #4e73df;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #2e59d9;
+}

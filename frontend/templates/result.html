@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>AutoML Results</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+<div class="container">
+<span class="navbar-brand">AutoML Results</span>
+</div>
+</nav>
+
+
+<div class="container mt-5">
+
+<div class="card shadow p-4">
+
+<h2 class="text-center">Best Model</h2>
+
+<h4 class="text-center text-primary">{{model}}</h4>
+
+<h5 class="text-center mt-3">Accuracy: {{accuracy}} %</h5>
+
+<hr>
+
+<h4 class="text-center">Model Performance Comparison</h4>
+
+<canvas id="chart" height="80"></canvas>
+
+<hr>
+
+<h4>Model Scores</h4>
+
+<table class="table table-striped">
+
+<tr>
+<th>Model</th>
+<th>Score</th>
+</tr>
+
+{% for key,value in scores.items() %}
+
+<tr>
+<td>{{key}}</td>
+<td>{{value}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+<div class="mt-4">
+
+<a href="/download_cleaned" class="btn btn-success">
+Download Cleaned Dataset
+</a>
+
+<a href="/" class="btn btn-primary">
+Upload Another Dataset
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<script>
+
+const modelScores = {{ scores | tojson }};
+
+const labels = Object.keys(modelScores);
+const values = Object.values(modelScores);
+
+const chartData = {
+    labels: labels,
+    datasets: [{
+        label: "Model Score",
+        data: values,
+        backgroundColor: [
+            "#4e73df",
+            "#1cc88a",
+            "#36b9cc",
+            "#f6c23e",
+            "#e74a3b"
+        ],
+        borderWidth: 1
+    }]
+};
+
+const chartConfig = {
+    type: 'bar',
+    data: chartData,
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 1
+            }
+        }
+    }
+};
+
+new Chart(
+    document.getElementById('chart'),
+    chartConfig
+);
+
+
+</script>
+<footer class="text-center mt-5 mb-3 text-muted">
+
+<p>
+Smart Data Cleaning & AutoML Platform  
+</p>
+
+<p>
+Developed by <b>Shweta Jadhav</b> 
+</p>
+
+</footer>
+
+</body>
+</html>
